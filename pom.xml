@@ -43,12 +43,7 @@
                         <version>1.9.0</version>
                         <configuration>
                             <container>
-                                <containerId>wildfly10x</containerId>
-                                <zipUrlInstaller>
-                                    <url>
-                                        http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.zip
-                                    </url>
-                                </zipUrlInstaller>
+                                <containerId>wildfly21x</containerId>                                
                             </container>
                             <configuration>
                                 <properties>
@@ -57,10 +52,33 @@
                                         9990
                                     </cargo.jboss.management-http.port>
                                     <cargo.servlet.users>
-                                        testUser:admin1234!
+                                        administrator1:password1!
                                     </cargo.servlet.users>
                                 </properties>
                             </configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>wildfly-runtime</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>1.1.0.Alpha5</version>
+                        <configuration>
+                            <hostname>127.0.0.1</hostname>
+                            <port>9990</port>
+                            <username>administrator1</username>
+                            <password>password1!</password>
+                            <filename>${project.build.finalName}.jar</filename>
                         </configuration>
                     </plugin>
                 </plugins>
